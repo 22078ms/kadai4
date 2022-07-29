@@ -5,4 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: ../../culc-GCF-test.sh
+      - run: pwd
+      - run: bash culc-GCF-test.sh
