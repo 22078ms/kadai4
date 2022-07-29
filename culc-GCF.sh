@@ -38,6 +38,9 @@ do
 	fi 
 done 
 
-#echo $input1
-echo 3
+echo $input1
+
+#CIがこけるテスト用固定返却値
+#echo 3
+
 exit 0
