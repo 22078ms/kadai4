@@ -38,5 +38,6 @@ do
 	fi 
 done 
 
-echo $input1
+#echo $input1
+echo 3
 exit 0
