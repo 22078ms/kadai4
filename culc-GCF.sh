@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# 引数が2個かどうかをチェック
+# 引数が2個かどうかをチェックし、2個でなければエラー終了
 if [ $# -ne 2 ] ; then
-	echo "input 2 argments" 1>&2
+	echo "input 2 argments"
 	exit 1
 fi
 
-# 引数が2つとも自然数かどうかをチェック
+# 引数が2つとも自然数かどうかをチェックし、自然数でなければエラー終了
+# 1つ目の引数のチェック
 input1=$1
 expr $input1 + 1 >&/dev/null
 ret=$?
@@ -14,6 +15,12 @@ if [ $ret -ge 2 ];then
 	echo "input natural number"
 	exit 1
 fi
+if [ $input1 -lt 1 ];then
+	echo "input natural number"
+	exit 1
+fi
+
+# 2つ目の引数のチェック
 input2=$2
 expr $input2 + 1 >&/dev/null
 ret=$?
@@ -21,14 +28,12 @@ if [ $ret -ge 2 ];then
 	echo "input natural number"
 	exit 1
 fi
-
-# 最大公約数を求める  2つの引数が同じであれば、引数が最大公約数になる
-if [ $input1 -eq $input2 ] ; then
-	echo $input1
-	exit 0
+if [ $input2 -lt 1 ];then
+	echo "input natural number"
+	exit 1
 fi
 
-# 最大公約数を求める  2つの引数が異なる場合は、ユーグリッドの互除法で求める
+# ユーグリッドの互除法を使って、2つの入力値の最大公約数で求める
 while [ $input1 -ne $input2 ] ;
 do
 	if [ $input1 -gt $input2 ];then
@@ -38,6 +43,7 @@ do
 	fi 
 done 
 
+# 2つの引数が同じ値になっているので、一方を出力する
 echo $input1
 
 #CIがこけるテスト用固定返却値
